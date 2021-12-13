@@ -72,6 +72,8 @@ class Model:
         return moves
 
 
+
+
 class Color(enum.Enum):
     black = -1
     white = 1

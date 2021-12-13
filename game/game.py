@@ -7,12 +7,14 @@ class Game:
         self.model = model.Model()
         self.turn = -1
         self.gameOver = False
+        self.lastMove = []
 
     def getValidMoves(self):
         return self.model.getValidMoves(self.turn)
 
     def doTurn(self,row,col):
         self.model.setPiece(row,col,self.turn)
+        self.lastMove = [row,col,self.turn]
 
         self.turn = self.turn * -1
         if(len(self.getValidMoves()) == 0):
@@ -66,6 +68,7 @@ class Game:
             print(f"Current turn: {turn}")
             print(f"Possible moves: {self.getValidMoves()}")
             print(f"Current score: {self.calcScore()}")
+            print(f"Last move: {self.lastMove}")
             moves = self.getValidMoves()
             position = moves[randint(0, len(moves)-1)]
 
@@ -73,6 +76,7 @@ class Game:
 
         print(self.model.board)
         print(f"Final score: {self.calcScore()}")
+        print(f"Last move: {self.lastMove}")
         if (self.calcScore() > 0):
             print("Winner: White")
         elif (self.calcScore() < 0):
@@ -95,5 +99,11 @@ class Game:
                 sum += self.model.board[r][c]
 
         return sum
+
+    def playRandomMove(self):
+        moves = self.getValidMoves()
+        position = moves[randint(0, len(moves) - 1)]
+
+        self.doTurn(position[0], position[1])
 
 

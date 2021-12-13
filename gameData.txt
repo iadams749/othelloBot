@@ -1,0 +1,4 @@
+White vs. Black: Color and what percentage of games more are won by the color
+-------------------------------------------------------------------------------------------------
+
+Random move vs. Random move: White 5.5-6%

@@ -1,21 +1,34 @@
+import datetime
+
 from game import model, game
 from random import *
+from minimax.algorithm import minimax
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     g = game.Game()
-    sum = 0
-    for y in range(0,10):
-        sum = 0
-        for x in range(0,1000):
-            g = game.Game()
-            g.playGameAuto()
-            if(g.calcScore() > 0):
-                sum += 1
-            elif(g.calcScore() < 0):
-                sum -= 1
-        print(sum)
+
+    move = [-1,-1]
+
+    beginTime = datetime.datetime.now()
+
+    while(not g.gameOver):
+        if(g.turn == -1):
+            move[0] = -1
+            move[1] = -1
+            minimax(5,False,g,move)
+            g.doTurn(move[0], move[1])
+            print(g.model.board)
+            print(f"Current Score: {g.calcScore()}")
+        else:
+            move[0] = -1
+            move[1] = -1
+            minimax(4, True, g, move)
+            g.doTurn(move[0], move[1])
+            print(g.model.board)
+            print(f"Current Score: {g.calcScore()}")
+
+    print(f"Final time: {datetime.datetime.now()-beginTime}")
+
 
     # turn = 1
 
