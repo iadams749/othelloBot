@@ -7,6 +7,7 @@ class Model:
         #Initializing the empty board
         self.board = np.array([[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,-1,1,0,0,0],[0,0,0,1,-1,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]])
 
+    # Sets the piece of the specified color on the board and flips all of the appropriate tiles
     def setPiece(self,row,col,color):
         for h in range(-1,2):
             for v in range(-1,2):
@@ -14,6 +15,7 @@ class Model:
 
         # print(self.board)
 
+    # Flips all of the appropriate tiles in a certain direction
     def flipColors(self,row,col,color,horizontal,vertical):
         if(self.isValidFlip(row,col,color,horizontal,vertical)):
 
@@ -27,9 +29,10 @@ class Model:
                 r += vertical
                 c+= horizontal
 
+    # Checks if a certain direction from a spot qualifies a move as valid
     def isValidFlip(self,row,col,color,horizontal,vertical):
 
-        if(self.board[row][col] != 0):
+        if (self.board[row][col] != 0):
             return False;
 
         firstTile = (self.isValidPosition(row+vertical,col+horizontal) and self.board[row+vertical][col+horizontal] == -1*color)
@@ -52,26 +55,33 @@ class Model:
 
         return False;
 
+    # Checks if a position is on the board or not
     def isValidPosition(self,row,col):
         return not(row < 0 or col < 0 or row > 7 or col > 7)
 
+    # Returns a list of all the valid moves for a certain color
     def getValidMoves(self,color):
         moves = []
 
         for r in range(0,8):
             for c in range(0,8):
-                valid = False
-                for h in range(-1, 2):
-                    for v in range(-1, 2):
-                        if(self.isValidFlip(r,c,color,h,v)):
-                            valid = True;
-
-                if(valid):
+                if(self.checkSpot(r,c,color)):
                     moves.append([r,c])
 
         return moves
 
+    # Checks if a single spot is a valid placement for a piece
+    def checkSpot(self,r,c,color):
 
+        if(self.board[r][c] != 0):
+            return False;
+
+        for h in range(-1, 2):
+            for v in range(-1, 2):
+                if (self.isValidFlip(r,c,color,h,v)):
+                    return True
+
+        return False
 
 
 class Color(enum.Enum):

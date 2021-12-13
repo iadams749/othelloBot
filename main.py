@@ -15,15 +15,16 @@ if __name__ == '__main__':
         if(g.turn == -1):
             move[0] = -1
             move[1] = -1
-            minimax(5,False,g,move)
+            minimax(4,False,g,move)
             g.doTurn(move[0], move[1])
             print(g.model.board)
             print(f"Current Score: {g.calcScore()}")
         else:
-            move[0] = -1
-            move[1] = -1
-            minimax(4, True, g, move)
-            g.doTurn(move[0], move[1])
+            # move[0] = -1
+            # move[1] = -1
+            # minimax(4, True, g, move)
+            # g.doTurn(move[0], move[1])
+            g.playRandomMove()
             print(g.model.board)
             print(f"Current Score: {g.calcScore()}")
 
