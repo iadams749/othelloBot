@@ -6,6 +6,15 @@ def minimax(depth, max_player,game,move):
 
     if depth == 0 or game.gameOver:
         return game.calcScore()
+        # score = game.calcScore()
+
+        # if(game.gameOver):
+        #     print(move)
+        #     if score > 0:
+        #         return 9999999
+        #     elif score < 0:
+        #         return -9999999
+        # return score
 
 
     if(max_player):

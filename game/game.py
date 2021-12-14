@@ -98,6 +98,21 @@ class Game:
             for c in range(0,8):
                 sum += self.model.board[r][c]
 
+        if self.gameOver:
+            if sum > 0:
+                sum = 999
+            if sum < 0:
+                sum = -999
+
+        return sum
+
+    def calcRawScore(self):
+        sum = 0
+
+        for r in range(0, 8):
+            for c in range(0, 8):
+                sum += self.model.board[r][c]
+
         return sum
 
     def playRandomMove(self):
