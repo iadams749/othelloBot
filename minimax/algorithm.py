@@ -65,7 +65,10 @@ def minimaxabp(depth, max_player, game, move, alpha, beta):
         for m in moves:
             ga = deepcopy(game)
             ga.doTurn(m[0], m[1])
-            score = minimaxabp(depth - 1, not max_player, ga, move, alpha, beta)
+            if (ga.turn == -1):
+                score = minimaxabp(depth - 1, False, ga, move, alpha, beta)
+            else:
+                score = minimaxabp(depth - 1, True, ga, move, alpha, beta)
             if score > bestScore:
                 bestMove[0] = m[0]
                 bestMove[1] = m[1]
@@ -89,7 +92,11 @@ def minimaxabp(depth, max_player, game, move, alpha, beta):
         for m in moves:
             ga = deepcopy(game)
             ga.doTurn(m[0], m[1])
-            score = minimaxabp(depth - 1, not max_player, ga, move, alpha, beta)
+            if(ga.turn == -1):
+                score = minimaxabp(depth - 1, False, ga, move, alpha, beta)
+            else:
+                score = minimaxabp(depth - 1, True, ga, move, alpha, beta)
+
             if score < bestScore:
                 bestMove[0] = m[0]
                 bestMove[1] = m[1]

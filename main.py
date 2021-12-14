@@ -8,7 +8,16 @@ if __name__ == '__main__':
     alpha = -99999
     beta = 99999
 
-    for x in range(0,1):
+
+
+    # if(g.turn == -1):
+    #     minimaxabp(6,False,g,move,alpha,beta)
+    #     g.doTurn(move[0],move[1])
+    #     print(g.model.board)
+    #     print(f"Current Score: {g.calcRawScore()}")
+    #     print(f"Last Move: {move}")
+
+    for x in range(0,10):
         beginTime = datetime.datetime.now()
         g = game.Game()
 
@@ -19,10 +28,10 @@ if __name__ == '__main__':
             move[1] = -1
 
             if(g.turn == -1):
-                minimaxabp(6,False,g,move,alpha,beta)
+                minimaxabp(5,False,g,move,alpha,beta)
                 g.doTurn(move[0], move[1])
-                print(g.model.board)
-                print(f"Current Score: {g.calcScore()}")
+                # print(g.model.board)
+                # print(f"Current Score: {g.calcScore()}")
             else:
                 g.playRandomMove()
 
