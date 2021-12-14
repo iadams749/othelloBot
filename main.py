@@ -1,43 +1,32 @@
 import datetime
-
-from game import model, game
-from random import *
-from minimax.algorithm import minimax
+from minimax.algorithm import *
 
 if __name__ == '__main__':
     g = game.Game()
 
     move = [-1,-1]
-    beginTime = datetime.datetime.now()
+    alpha = -99999
+    beta = 99999
 
-    while(not g.gameOver):
-        if(g.turn == -1):
+    for x in range(0,1):
+        beginTime = datetime.datetime.now()
+        g = game.Game()
+
+        while(not g.gameOver):
+            alpha = -99999
+            beta = 99999
             move[0] = -1
             move[1] = -1
-            minimax(5,False,g,move)
-            g.doTurn(move[0], move[1])
-            print(g.model.board)
-            print(f"Current Score: {g.calcScore()}")
-        else:
-            move[0] = -1
-            move[1] = -1
-            minimax(4, True, g, move)
-            g.doTurn(move[0], move[1])
-            # g.playRandomMove()
-            print(g.model.board)
-            print(f"Current Score: {g.calcScore()}")
-    print(f"Final time: {datetime.datetime.now()-beginTime}")
 
+            if(g.turn == -1):
+                minimaxabp(6,False,g,move,alpha,beta)
+                g.doTurn(move[0], move[1])
+                print(g.model.board)
+                print(f"Current Score: {g.calcScore()}")
+            else:
+                g.playRandomMove()
 
-    # turn = 1
-
-    # Having the computer play a random game
-    # for x in range(0,58):
-    #     moves = m.getValidMoves(turn)
-    #     position = moves[randint(0, len(moves)-1)]
-    #     m.setPiece(position[0],position[1],turn)
-    #     turn = -1*turn
-    #
-    # print(m.board)
+        print(f"Final Score: {g.calcScore()}")
+        print(f"Completion Time: {datetime.datetime.now()-beginTime}")
 
 

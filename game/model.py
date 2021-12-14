@@ -5,21 +5,20 @@ class Model:
     def __init__(self):
 
         #Initializing the empty board
-        self.board = np.array([[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,-1,1,0,0,0],[0,0,0,1,-1,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]])
+        self.board = np.array([[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,1,-1,0,0,0],[0,0,0,-1,1,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]])
 
     # Sets the piece of the specified color on the board and flips all of the appropriate tiles
     def setPiece(self,row,col,color):
         for h in range(-1,2):
             for v in range(-1,2):
                 self.flipColors(row,col,color,h,v)
+        self.board[row][col] = color
 
         # print(self.board)
 
     # Flips all of the appropriate tiles in a certain direction
     def flipColors(self,row,col,color,horizontal,vertical):
         if(self.isValidFlip(row,col,color,horizontal,vertical)):
-
-            self.board[row][col] = color
 
             r = row+vertical
             c = col+horizontal
