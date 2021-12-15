@@ -115,6 +115,50 @@ class Game:
 
         return sum
 
+    def calcWeightedScore(self,values):
+        if self.gameOver:
+            sum = self.calcRawScore()
+            if sum > 0:
+                return 999
+            if sum < 0:
+                return -999
+
+        score = 0
+
+        for r in range(0,8):
+            for c in range(0,8):
+
+                # Checking for tiles in the corner
+                if (r == 0 or r == 7) and (c == 0 or c == 7):
+                    score += values[0] * self.model.board[r][c]
+
+                # Checking for tiles on the outside but not in the corners
+                elif r == 0 or r == 7 or c == 0 or c == 7:
+                    score += values[1] * self.model.board[r][c]
+
+                # Checking for tiles in the second ring in the corner
+                elif (r == 1 or r == 6) and (c == 1 or c == 6):
+                    score += values[2] * self.model.board[r][c]
+
+                # Checking for tiles in the second ring not in the corner
+                elif r == 1 or r == 6 or c == 1 or c == 6:
+                    score += values[3] * self.model.board[r][c]
+
+                # Checking for tiles in the third ring in the corner
+                elif (r == 2 or r == 5) and (c == 2 or c == 5):
+                    score += values[4] * self.model.board[r][c]
+
+                # Checking for tiles in the third ring not in the corner
+                elif r == 2 or r == 5 or c == 2 or c == 5:
+                    score += values[5] * self.model.board[r][c]
+
+                # Adding the score of the tiles in the fourth ring
+                else:
+                    score += self.model.board[r][c]
+
+        return score
+
+
     def playRandomMove(self):
         moves = self.getValidMoves()
         position = moves[randint(0, len(moves) - 1)]
