@@ -1,5 +1,4 @@
-import numpy as np
-from game import model
+from src.game import model
 from random import *
 
 class Game:

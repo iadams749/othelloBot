@@ -1,6 +1,4 @@
 from copy import deepcopy
-from game import game
-from game import model
 
 
 def minimax(depth, max_player, game, move):
