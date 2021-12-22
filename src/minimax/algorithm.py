@@ -2,8 +2,8 @@ from copy import deepcopy
 
 
 def minimax(depth, max_player, game, move):
-    """Recursively calls a simple minimax algorithm on the provided game with all pieces weighted equally
-
+    """
+    Recursively calls a simple minimax algorithm on the provided game with all pieces weighted equally
     :param depth: int representing the current depth of the call
     :param max_player: bool representing whether or not the call aims to maximize the score
     :param game: Game that represents the current came for the algorithm to be called on
@@ -58,8 +58,8 @@ def minimax(depth, max_player, game, move):
 
 
 def minimaxabp(depth, max_player, game, move, alpha, beta):
-    """Recursively calls a minimax algorithm that has alpha-beta pruning implemented in order to increase efficiency, uses a weighted value of one for all pieces
-
+    """
+    Recursively calls a minimax algorithm that has alpha-beta pruning implemented in order to increase efficiency, uses a weighted value of one for all pieces
     :param depth: int representing the current depth of the call
     :param max_player: bool representing whether or not the call aims to maximize the score
     :param game: Game that represents the current came for the algorithm to be called on
@@ -72,8 +72,8 @@ def minimaxabp(depth, max_player, game, move, alpha, beta):
 
 
 def minimaxabpweighted(depth, max_player, game, move, alpha, beta, values):
-    """Recursively calls a minimax algorithm that has alpha-beta pruning implemented in order to increase efficiency, calculates weighted score based off of provided weights
-
+    """
+    Recursively calls a minimax algorithm that has alpha-beta pruning implemented in order to increase efficiency, calculates weighted score based off of provided weights
     :param depth: int representing the current depth of the call
     :param max_player: bool representing whether or not the call aims to maximize the score
     :param game: Game that represents the current came for the algorithm to be called on
